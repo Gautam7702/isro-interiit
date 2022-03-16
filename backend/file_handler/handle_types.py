@@ -12,7 +12,7 @@ def read_fits(file_path):
         if len(data_) > 0 and len(data_[0]) > 0:
             return {
                 "good": True,
-                "data": data_[:,:2]
+                "data": np.array(data_.tolist())[:,:2]
             }
         else:
             return {
