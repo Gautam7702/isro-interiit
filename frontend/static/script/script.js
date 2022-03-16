@@ -14,6 +14,10 @@ document.getElementsByClassName('drop-zone__input')[0].addEventListener('change'
     const files = document.getElementsByClassName('drop-zone__input')[0].files;
     updateThumbnail(files[0].name);
 });
+const arrow = document.getElementsByClassName('arr')[0];
+arrow.addEventListener('mouseenter',e=>{
+    arrow.click();
+});
 dropZoneElement.addEventListener("dragend",e=> {dropZoneElement.classList.remove("drop-zone__over")});
 dropZoneElement.addEventListener("dragleave",e=> {dropZoneElement.classList.remove("drop-zone__over")});
 dropZoneElement.addEventListener("drop",e=> {
@@ -30,42 +34,54 @@ function updateThumbnail(fname)
         document.getElementsByClassName('drop-zone__thumb')[0].style.display = "block";
     }
 const dropDownHoverEl = document.getElementsByClassName("drop-down")[0];
-
+function hideDropDown(){
+    document.getElementsByClassName('Op1')[0].style.display = "none";
+    document.getElementsByClassName('Op2')[0].style.display = "none";
+    document.getElementsByClassName('Op3')[0].style.display = "none";
+    document.getElementsByClassName('Op4')[0].style.display = "none";
+}
+function showDropDown(){
+    document.getElementsByClassName('Op1')[0].style.display = "block";
+    document.getElementsByClassName('Op2')[0].style.display = "block";
+    document.getElementsByClassName('Op3')[0].style.display = "block";
+    document.getElementsByClassName('Op4')[0].style.display = "block";
+}
 dropDownHoverEl.addEventListener('mouseenter',
     e=>{
-        document.getElementsByClassName('Op1')[0].style.display = "block";
-        document.getElementsByClassName('Op2')[0].style.display = "block";
-        document.getElementsByClassName('Op3')[0].style.display = "block";
-        document.getElementsByClassName('Op4')[0].style.display = "block";
+        showDropDown();
     })
 dropDownHoverEl.addEventListener('mouseleave',
     e=>{
-        document.getElementsByClassName('Op1')[0].style.display = "none";
-        document.getElementsByClassName('Op2')[0].style.display = "none";
-        document.getElementsByClassName('Op3')[0].style.display = "none";
-        document.getElementsByClassName('Op4')[0].style.display = "none";
+        hideDropDown();
     }
 )
 correctFileFormat = 'NaN';
 document.getElementsByClassName('Op1')[0].addEventListener('click',
-    e=>{document.getElementsByClassName('selectedOp')[0].innerHTML = 'FITS';
+    e=>{
+        document.getElementsByClassName('selectedOp')[0].innerHTML = 'FITS';
         correctFileFormat = 'FITS';
+        hideDropDown();
+        
         }
 );
 document.getElementsByClassName('Op2')[0].addEventListener('click',
     e=>{
         document.getElementsByClassName('selectedOp')[0].innerHTML = 'ASCII';
         correctFileFormat= 'ASCII'
+        hideDropDown();
     }
 );
 document.getElementsByClassName('Op3')[0].addEventListener('click',
     e=>{document.getElementsByClassName('selectedOp')[0].innerHTML = 'CDF';
         correctFileFormat = 'CDF';
+        hideDropDown();
+        document.getElementsByClassName('desc_format')[0].innerHTML = "The file should contain 2 elements, the second element being the main data. The data should be an array or list where the fields 'time' and 'rate' must be present. These should be the first 2 elements of each array.";
 }
 );
 document.getElementsByClassName('Op4')[0].addEventListener('click',
     e=>{document.getElementsByClassName('selectedOp')[0].innerHTML = 'XLS';
         correctFileFormat = 'XLS';
+        hideDropDown();
     }
 );
 document.getElementsByClassName('submitButton')[0].addEventListener('click',e=>{

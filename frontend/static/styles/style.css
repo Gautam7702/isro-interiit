@@ -61,18 +61,17 @@ h1{
 .arr{
 	position: absolute;
 	height: 4vh;
-	width: 100px; 
-	bottom:2vh;
-	left: 48vw;  
+	width: 8vw; 
+	bottom:3vh;
+	left: 46vw;  
 }
 .drop-zone{
-	
 	position:relative;
 	top:20vh;
-	background-color: white;
-	margin-left: 35vw;
+	background-color: #c5c6d0;
+	left: 35vw;
 	max-width: 30vw;
-	height: 30vh;
+	height: 20vh;
 	display: flex;
 	padding: 25px;
 	align-items: center;
@@ -84,6 +83,9 @@ h1{
 	color: black;
 	font-weight: 500;
 	border: 4px dashed black;
+}
+.drop-zone:hover{
+	background-color: #c5c6d0e7;
 }
 .defaultText{
 	font-size: 20px;
@@ -123,9 +125,10 @@ h1{
 	position:relative;
 	top: 20vh;
 	width: 15vw;
-	height: 5vh;
+	height: 3vh;
 	left: 20vh;
-	padding: 5px;
+	padding-bottom: 10px;
+
 	border-radius: 10px;
 	border : none;
 	margin-left: 42vw;
@@ -133,7 +136,7 @@ h1{
 	background-color: #D0750C;
 }
 .submitButton:hover{
-	background-color: white;
+	background-color: #BB690A;
 	color:black;
 }
 
@@ -146,21 +149,30 @@ h1{
 	width: 60vw;
 }
 .intro{
+	display: inline;
 	position:relative;
 	top: 15vh;
-	left: 2vw;
 	text-align: center;
 }
-h2{
+.heading2{
+	position: relative;
 	font-family: 'Righteous', cursive;
 	color: #D0750C;
 	font-size: 34px;
+	width: 20vw;
+	left: 45vw;
+	display: inline;
 }
 .para{
 	font-family: 'EB Garamond', serif;
 	font-size:20px;
+	position: relative;
+	left: 2vw;
+	display: inline;
 }
 .drop-down{
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
 	border-radius: 10px;
 	position:relative;
 	width: 200px;
@@ -171,11 +183,10 @@ h2{
 .selectedOp{
 	position: relative;
 	color: black;
-	font-family: 'EB Garamond', serif;
 	width: 15vw;
 	background-color: #D0750C;
 	height: 3vh;
-	border-radius: 2px;
+	border-radius: 10px;
 	text-align: center;
 	border: 1px solid black;
 }
@@ -195,7 +206,7 @@ h2{
 	background-color: #BB690A;
 }
 .Op1,.Op2,.Op3,.Op4{
-	font-family: 'EB Garamond', serif;
+	border-radius: 10px;
 	text-align: center;
 	display: none;
 	width: 15vw;
@@ -210,4 +221,14 @@ h2{
 	width: 2vw;
 	top:5px;
 	height: 2vh;
+}
+.desc_format{
+	position: relative;
+	top:25vh;
+	width: 60vw;
+	text-align: center;
+	left: 20vw;
+	font-family: 'EB Garamond', serif;
+	font-size: 20px; 
+	font-style: italic;
 }

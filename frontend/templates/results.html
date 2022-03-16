@@ -7,8 +7,10 @@
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js">
     </script>
+    <link rel ="stylesheet" href= "{{ url_for('static', filename='styles/style_result.css') }}"> 
 </head>
 <body>
+    <h1>Graph</h1>
     <canvas id = "mychart">
      
     </canvas>
@@ -23,8 +25,8 @@
             label.push(i);
         }
     const ctx = document.getElementById('mychart').getContext('2d'); 
-    const down = function(ctx,value){
-        console.log(ctx);
+    const down = function(ctx){
+        // console.log(ctx);
         val =0;
         for(let i=0;i<ranges.length;i++)
             {
@@ -35,7 +37,7 @@
             }
         if(val==1)
             {
-                return value;
+                return 'rgb(192,75,75)';
             }
         else    
             return undefined;
@@ -49,29 +51,129 @@
                labels : label,
                datasets:[
                    {
-               fill: true,
-               label: 'My first chart',
-               pointHoverBackgroundColor: 'blue',
-               pointBackgroundColor: function(context){
-                   // print(context);
-                   if(context.dataIndex==1 )
-                   {return "blue";}
-                   else {return "black";}},
-               // borderColor: ,
-               data : graphD,   
-               radius: 0.6,
-               tension: 0.4,
-               segment: {
-                   backgroundColor: ctx => down(ctx, 'rgb(192,75,75)'),
-               }
-                   }]
-          
-
+                        fill: true,
+                        label: 'Not-solar flare',
+                        //    backgroundColor:'blue',
+                        pointHoverBackgroundColor: 'blue',
+                        pointBackgroundColor: function(context){
+                            // print(context);
+                            if(context.dataIndex==1 )
+                            {return "blue";}
+                            else {return "black";}},
+                        // borderColor: ,
+                        data : graphD,   
+                        radius: 0.6,
+                        tension: 0.4,
+                        segment: {
+                            backgroundColor: ctx => down(ctx),
+                        }},
+               {
+                    label: 'Solar Flare',
+                    fill: false,
+                    backgroundColor: 'rgb(192,75,75)'
+                    }
+                   ]
            },
-      
-           options :{}
+           options :{
+               scales:{
+                   y:{
+                       title:{
+                        display: true,
+                        text:'Y-axis'
+                        }
+                   },
+                   x:{
+                       title:{
+                        display: true,
+                        text:'x-axis'
+                        }
+                   }
+                       
+               },
+           }
        }
      );
+
+    console.log(ranges.length);
+     for(let i=0;i<ranges.length;i++)
+       {
+           const flareRegion = document.createElement('div');
+           flareRegion.setAttribute('class','flareRegion');
+           flareRegion.setAttribute('id','flareRegion'+i);
+           const heading = document.createElement('div');
+           heading.setAttribute('class','heading');
+           heading.setAttribute('id','heading'+i);
+           heading.innerHTML = "Solar Flare " + (i+1);
+           const chart = document.createElement('canvas');
+           chart.setAttribute("id","chart"+i);
+           chart.setAttribute("class","chart");
+           const risetime = document.createElement('div');
+           risetime.setAttribute('class','risetime');
+           risetime.setAttribute('id','risetime'+i);
+           const decaytime = document.createElement('div');
+           decaytime.setAttribute('class','decaytime');
+           decaytime.setAttribute('id','decaytime'+i);
+           const peakflux = document.createElement('div');
+           peakflux.setAttribute('class','peakflux');
+           peakflux.setAttribute('id','peakflux'+i);
+           const duration = document.createElement('div');
+           duration.setAttribute('class','duration');
+           duration.setAttribute('id','duration'+i);
+           document.getElementsByTagName('body')[0].appendChild(flareRegion);
+           risetime.innerHTML = "Rise Time : "+ranges[i]["rise_time"];
+           decaytime.innerHTML = "Decay Time :"+ranges[i]['decay_time'];
+           peakflux.innerHTML = "Peak Flux: " +ranges[i]['peak_flux'];
+           duration.innerHTML = "Duration: " + ranges[i]['duration'];
+           flareRegion.appendChild(heading);
+           flareRegion.appendChild(chart);
+           flareRegion.appendChild(risetime);
+           flareRegion.appendChild(decaytime);
+           flareRegion.appendChild(duration);
+
+
+           const ctx = document.getElementById(('chart'+i)).getContext('2d');
+           const data =[];
+           const label = []; 
+           for(let j = ranges[i]['range'][0];j<=ranges[i]['range'][1];j++)
+            {
+                label.push(j);
+                data.push(graphD[j]);
+            }
+            console.log(data);
+           const newChart = new Chart(ctx,
+           {
+            type:'line',
+            data:{
+                labels : label,
+                datasets:[
+                    {
+                        fill: true,
+                        label: 'solar flare',
+                        backgroundColor: 'rgb(192,75,75)',
+                        data: data,
+                        radius: 0.6,
+                        tension: 0.4,
+                    }]
+            },
+            options :{
+               scales:{
+                   y:{
+                       title:{
+                        display: true,
+                        text:'Y-axis'
+                        }
+                   },
+                   x:{
+                       title:{
+                        display: true,
+                        text:'x-axis'
+                        }
+                   }     
+               },
+           }
+           }
+           )
+       }
    // data.datasets[0].borderColor = "white";
 </script>
 </html>
