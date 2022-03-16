@@ -1,10 +1,12 @@
-from mock.file_handler import handle_file
-from mock.analyse import analyse
+from backend.file_handler.main import get_numpy_array
+from backend.core.main import get_response
 
 
-def get_analysis_data(filename: str) -> dict:
-    file_status = handle_file(filename)
-    if file_status[0]:
-        return analyse(filename)
+def get_analysis_data(filename: str, file_type: str) -> dict:
+    file_status = get_numpy_array(filename, file_type)
+    if file_status["good"]:
+        matrix = file_status["data"]
+        response = get_response(matrix)
+        return response
     else:
-        return {"OK": {"status": False, "message": file_status[1]}}
+        return {"OK": {"status": False, "message": file_status["message"]}}
