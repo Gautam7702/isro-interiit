@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+</head>
+<body>
+    <canvas id = "mychart">
+     
+    </canvas>
+</body>
+<script>
+    const el = {{ graphData | tojson | safe }};
+    const graphD = el['graph_data'];
+    const ranges = el['ranges'];
+    const label =[];
+    for(let i=1;i<=graphD.length;i++)
+        {
+            label.push(i);
+        }
+    const ctx = document.getElementById('mychart').getContext('2d'); 
+    const down = function(ctx,value){
+        console.log(ctx);
+        val =0;
+        for(let i=0;i<ranges.length;i++)
+            {
+                if(ctx.p0DataIndex>=ranges[i]['range'][0]&&ctx.p0DataIndex<=ranges[i]['range'][1])
+                    {
+                        val=1;
+                    }
+            }
+        if(val==1)
+            {
+                return value;
+            }
+        else    
+            return undefined;
+   
+   }
+     const myChart = new Chart(
+       ctx,
+       {
+           type : 'line',
+           data:{
+               labels : label,
+               datasets:[
+                   {
+               fill: true,
+               label: 'My first chart',
+               pointHoverBackgroundColor: 'blue',
+               pointBackgroundColor: function(context){
+                   // print(context);
+                   if(context.dataIndex==1 )
+                   {return "blue";}
+                   else {return "black";}},
+               // borderColor: ,
+               data : graphD,   
+               radius: 0.6,
+               tension: 0.4,
+               segment: {
+                   backgroundColor: ctx => down(ctx, 'rgb(192,75,75)'),
+               }
+                   }]
+          
+
+           },
+      
+           options :{}
+       }
+     );
+   // data.datasets[0].borderColor = "white";
+</script>
+</html>

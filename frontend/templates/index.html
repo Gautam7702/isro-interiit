@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel ="stylesheet" href= "{{ url_for('static', filename='styles/style.css') }}"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Kanit:wght@800&family=Righteous&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+    <div class = "home">
+        <img class = "home_img" src = "{{ url_for('static', filename='images/background_home.png') }}">
+        <h1>
+        IDENTIFICATION OF SOLAR BURSTS<br>IN X-RAY LIGHT CURVES
+        </h1>
+        <hr class ="hr1">
+        <div class ="desc">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+        <a href="#fileInput">
+        <img class= "arr" src = "{{ url_for('static', filename='images/arrow_down.png') }}" onclick="makeVisible()">
+        </a>
+    </div>
+    <div class="fileInput" id ="fileInput">
+        <div class = "intro">
+        <h2>Drag and Drop</h2>
+        <!-- <br> -->
+        <form action ="/submit" method = "post" enctype="multipart/form-data" class ="form">
+        <p class = "para">Files with extensions csv,fits are supported</p>
+        </div>
+        <div class = "drop-zone" id = "drop-zone">
+            <span class ="defaultText">Drop a file here or click to upload</span>
+            <div class="drop-zone__thumb"></div>
+            <input type ="file" name = "file" class="drop-zone__input">
+        </div>
+        <button type="submit" class="submitButton">Submit</button>
+        <div class = "drop-down">
+            <div class = "selectedOp">Select File Format<img class= "arr2" src = "{{ url_for('static', filename='images/arrow_down.png') }}"></div>
+            <div class = "Op1">FITS </div>
+            <div class = "Op2">ASCII</div>
+            <div class = "Op3">CDF</div>
+            <div class = "Op4">XLS</div>
+        </div>
+    
+        </form>
+    </div> 
+</body>
+<script src="{{ url_for('static', filename='script/script.js') }}"></script>
+</html>
