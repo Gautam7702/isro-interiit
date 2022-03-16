@@ -18,7 +18,9 @@
 <script>
     const el = {{ graphData | tojson | safe }};
     const graphD = el['graph_data'];
-    const ranges = el['ranges'];
+    console.log(graphD)
+
+    const ranges = el['peaks'];
     const label =[];
     for(let i=1;i<=graphD.length;i++)
         {

@@ -16,7 +16,6 @@ def homePage():
 @app.route('/submit',methods=['GET','POST'])
 def uploadFile():
     if(request.method == 'POST'):
-        
         if 'file' not in request.files :
             return redirect('/')
         print(request)
@@ -26,6 +25,7 @@ def uploadFile():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         path = "frontend/uploads/"+filename 
         f = get_analysis_data(path,"fits")
+        # print(f)
         return render_template('results.html',graphData = f)
 if(__name__=='__main__'):
     app.run(debug=True)
