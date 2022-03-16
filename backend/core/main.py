@@ -8,7 +8,7 @@ def get_response(matrix) -> dict:
     Get response from data.
     """
     array = complete_curve(matrix)
-    array = moving_average(array, 300)
+    array = moving_average(array, 300)[500:-500]
     peaks_info = get_peak_information(array)
 
     return {
