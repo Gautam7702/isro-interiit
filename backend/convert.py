@@ -21,7 +21,7 @@ def convert_to_apt_type(response):
         ]
         apt_response["OK"] = response["OK"]
     except Exception as e:
-        print(e)
+        # print(e)
         apt_response = {
             "OK": {
                 "status": False,
