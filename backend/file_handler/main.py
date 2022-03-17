@@ -6,7 +6,7 @@ def get_numpy_array(file_path: str, file_type: str):
     """
     if file_type.lower() == "fits":
         return read_fits(file_path)
-    elif file_type.lower() == "csv":
+    elif file_type.lower() == "csv" or file_type.lower() == "ascii":
         return read_csv(file_path)
     elif file_type.lower() == "xls":
         return read_xls(file_path)

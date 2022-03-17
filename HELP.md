@@ -33,3 +33,25 @@ or optionally,
 
 # XLS
 
+SImilar to ASCII, the XLS file must have ```time``` in the first column and ```rate``` in the second column. The file can optionally contain ```error``` and ```frace``` in the third and fourth columns.
+
+For example, on opening, the file must look like this:
+
+```
+<time_value1>   <rate_value1>
+<time_value2>   <rate_value2>
+<time_value3>   <rate_value3>
+<time_value4>   <rate_value4>
+<time_value5>   <rate_value5>
+```
+
+or optionally,
+```
+<time_value1>   <rate_value1>  <error1>  <frace1>
+<time_value2>   <rate_value2>  <error2>  <frace2>
+<time_value3>   <rate_value3>  <error3>  <frace3>
+<time_value4>   <rate_value4>  <error4>  <frace4>
+<time_value5>   <rate_value5>  <error5>  <frace5>
+```
+
+in the XLS cells.

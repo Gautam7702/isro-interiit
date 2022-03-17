@@ -31,7 +31,7 @@ def read_csv(file_path):
     """
     try:
         data = pd.read_csv(file_path).to_numpy()
-        if len(data) > 0 and len(data.columns) > 0:
+        if len(data) > 0 and len(data[0]) > 0:
             return {
                 "good": True,
                 "data": data[:,:2]
@@ -53,7 +53,7 @@ def read_xls(file_path):
     """
     try:
         data = pd.read_excel(file_path).to_numpy()
-        if len(data) > 0 and len(data.columns) > 0:
+        if len(data) > 0 and len(data[0]) > 0:
             return {
                 "good": True,
                 "data": data[:,:2]
