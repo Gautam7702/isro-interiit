@@ -4,19 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Results</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Kanit:wght@800&family=Righteous&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js">
     </script>
     <link rel ="stylesheet" href= "{{ url_for('static', filename='styles/style_result.css') }}"> 
 </head>
 <body>
+    {% if error %}
+        <p>File does not match with the format chosen!</p>
+    {% else %}
     <h1>Graph</h1>
     <canvas id = "mychart">
-     
+       
     </canvas>
+    {% endif %}
 </body>
 <script>
     const el = {{ graphData | tojson | safe }};
+    const err = {{error}};
+    if(err == 0)
+    {
     const graphD = el['graph_data'];
     console.log(graphD)
 
@@ -39,7 +50,7 @@
             }
         if(val==1)
             {
-                return 'rgb(192,75,75)';
+                return '#BB690A';
             }
         else    
             return undefined;
@@ -54,29 +65,33 @@
                datasets:[
                    {
                         fill: true,
-                        label: 'Not-solar flare',
+                        label: 'Non flare region',
                         //    backgroundColor:'blue',
                         pointHoverBackgroundColor: 'blue',
-                        pointBackgroundColor: function(context){
-                            // print(context);
-                            if(context.dataIndex==1 )
-                            {return "blue";}
-                            else {return "black";}},
                         // borderColor: ,
                         data : graphD,   
                         radius: 0.6,
                         tension: 0.4,
+                        backgroundColor: 'lightgrey',
                         segment: {
                             backgroundColor: ctx => down(ctx),
                         }},
                {
-                    label: 'Solar Flare',
+                    label: 'Flare Region',
                     fill: false,
-                    backgroundColor: 'rgb(192,75,75)'
+                    backgroundColor: '#BB690A'
                     }
                    ]
            },
            options :{
+               animation: false,
+               snapGaps: true,  
+               plugins:{
+                   decimation:{
+                       enabled: true,
+                       showLine: false,
+                   }
+               },
                scales:{
                    y:{
                        title:{
@@ -105,7 +120,7 @@
            const heading = document.createElement('div');
            heading.setAttribute('class','heading');
            heading.setAttribute('id','heading'+i);
-           heading.innerHTML = "Solar Flare " + (i+1);
+           heading.innerHTML = "Flare " + (i+1);
            const chart = document.createElement('canvas');
            chart.setAttribute("id","chart"+i);
            chart.setAttribute("class","chart");
@@ -121,18 +136,24 @@
            const duration = document.createElement('div');
            duration.setAttribute('class','duration');
            duration.setAttribute('id','duration'+i);
+           const peak_pos = document.createElement('div');
+           peak_pos.setAttribute('class','peak_position');
+           peak_pos.setAttribute('id','peak_position'+i);
+          
+           
            document.getElementsByTagName('body')[0].appendChild(flareRegion);
+           peak_pos.innerHTML = "Peak Position : " + ranges[i]["peak_position"];
            risetime.innerHTML = "Rise Time : "+ranges[i]["rise_time"];
            decaytime.innerHTML = "Decay Time :"+ranges[i]['decay_time'];
            peakflux.innerHTML = "Peak Flux: " +ranges[i]['peak_flux'];
            duration.innerHTML = "Duration: " + ranges[i]['duration'];
            flareRegion.appendChild(heading);
            flareRegion.appendChild(chart);
+           flareRegion.appendChild(peak_pos);
            flareRegion.appendChild(risetime);
            flareRegion.appendChild(decaytime);
            flareRegion.appendChild(duration);
-
-
+           flareRegion.append(peakflux);
            const ctx = document.getElementById(('chart'+i)).getContext('2d');
            const data =[];
            const label = []; 
@@ -151,7 +172,7 @@
                     {
                         fill: true,
                         label: 'solar flare',
-                        backgroundColor: 'rgb(192,75,75)',
+                        backgroundColor: '#BB690A',
                         data: data,
                         radius: 0.6,
                         tension: 0.4,
@@ -176,6 +197,7 @@
            }
            )
        }
+    }
    // data.datasets[0].borderColor = "white";
 </script>
 </html>
