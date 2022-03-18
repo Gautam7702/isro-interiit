@@ -5,7 +5,7 @@ Authored by [Debjit Bhowal](https://github.com/debjit-bw), [Gautam Sethia](https
 This program searches for solar flares in lightcurve data. The input is the lightcurve file in FITS, ASCII or XLS formats. The output is a visual representation of the identified solar flares along with some representative information for each. Specifications regarding input files can be found in [FILES.md](https://github.com/debjit-bw/isro-interiit/blob/main/FILES.md).
 
 - [Installation](#installation)
-- [Usage](#usage)
+- [Usage (Examples)](#usage)
     - [Web version](#web-version)
     - [Standalone app](#standalone-app)
 - [Documentation](#documentation)
@@ -21,7 +21,7 @@ Both the web and app versions have an easy to use and intuitive UI.
 
 ## Web version
 
-Here we show how to use the web version of the software. For example, we will use the sample lightcurve file [fits_data.lc](https://github.com/debjit-bw/isro-interiit/blob/main/sample_files/fits_data.lc) which is in the FITS format. Sample files for all supported formats are present inside the [sample_files](https://github.com/debjit-bw/isro-interiit/tree/main/sample_files) folder.
+Here we show how to use the web version of the software. For this example, we will use the sample lightcurve file [fits_data.lc](https://github.com/debjit-bw/isro-interiit/blob/main/sample_files/fits_data.lc) which is in the FITS format. Sample files for all supported formats are present inside the [sample_files](https://github.com/debjit-bw/isro-interiit/tree/main/sample_files) folder.
 
 1. The homepage tells the user about the app and its function.
 
@@ -39,7 +39,7 @@ Here we show how to use the web version of the software. For example, we will us
 
 ![File input dialogue](Images/i3.jpeg)
 
-5. On scrolling, it shows other information about the flare, like the peak position, the rise and decay times of the peak, the duration and the peak flux.
+5. On scrolling, it shows other information about the flare, like the peak position, the rise and decay times of the flare, the duration and the peak flux.
 
 > Time related info like peak time are given as miliseconds since the start of the data. For example, it the peak position is 60000 ms, it means the peak is present 1 minute from the starting of the data.
 
@@ -47,7 +47,25 @@ Here we show how to use the web version of the software. For example, we will us
 
 ## Standalone app
 
-HOW TO USE WITH SS
+Here we show how to use the standalone app. For this example, we will use a sample LC file from the [ISRO Pradaan website's](https://pradan.issdc.gov.in/pradan/) LC file, found inside the calibrated folder. We also use a corrupted file to show how error messages are displayed. Sample files for all supported formats are present inside the [sample_files](https://github.com/debjit-bw/isro-interiit/tree/main/sample_files) folder.
+
+1. The main window has options to upload the required file types. Descriptions and specifications of the files can be found in [FILES.md](https://github.com/debjit-bw/isro-interiit/blob/main/FILES.md).
+
+![MainWindow](Images/MainWindow.png)
+
+2. We upload the sample file and see the output. Here we chose the file in FITS format.
+
+![File upload](Images/FileOpenMenu.png)
+
+3. If the file is found to be corrupted, the user is notified.
+
+![File error](Images/ErrorDisplay.png)
+
+4. The output is a visual representation of the identified solar flares.
+
+> Clicking the top left button lists each identified flare. Clicking on each shows the flare's details which include peak position, rise and decay times of the flare, the duration and the peak flux.
+
+![Output plot](Images/OpenFiles.png)
 
 
 # Documentation
