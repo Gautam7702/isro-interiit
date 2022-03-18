@@ -53,7 +53,16 @@ File: [peak_information.py](https://github.com/debjit-bw/isro-interiit/blob/main
 
 The backend uses [scipy's](https://scipy.org/) `detect_peaks` and `peak_widths` functions to extract the peaks. We use several parameters to fine-tune our predictions.
 
-<!> PUT EXPLANATIONS HERE
+### Fit Parameters
+Scipy uses several fit parameters which we have fine-tuned for the best quality predictions.
+
+We have used the find_peaks function for finding solar X-ray bursts and calculating their duration some of the parameters that we have changed in the function are listed below.  
+
+**Width**: we have taken the minimum time of solar width to be 60 seconds as we classify a peak as a solar X-ray burst if it lasts for more than 1 minute that is why we have taken width to be 60.
+
+**Height**: We have assumed the minimum height as half between the maximum flux value and the average. This was done because throughout our testing, we saw that all the bursts that are detected below avg/2 are either false positives or very low-key solar bursts that are not prominent enough to be classified.
+
+**rel_height**. We have taken its value to be 0.9 because the peaks would have at least 90% of the detected range inside them. Else, the function would return extreme values.
 
 > Occasionally the algorithm will trim a total of 1 second (at max) of data around the edges for better prediction accuracy.
 
