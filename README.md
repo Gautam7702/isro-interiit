@@ -1,8 +1,6 @@
 # isro-interiit
 
-Authored by [Debjit Bhowal](https://github.com/debjit-bw), [Gautam Sethia](https://github.com/Gautam7702), [Jugal Chapatwala](https://github.com/TakluBalm) and [Jignesh Agrawal](https://github.com/agjignesh) from IIT Ropar.
-
-This program searches for solar flares in lightcurve data. The input is the lightcurve file in FITS, ASCII or XLS formats. The output is a visual representation of the identified solar flares along with some representative information for each. Specifications regarding input files can be found in [FILES.md](https://github.com/debjit-bw/isro-interiit/blob/main/FILES.md).
+This program searches for solar flares in lightcurve data. The input is the lightcurve file in FITS, ASCII or XLS formats. The output is a visual representation of the identified solar flares along with some representative information for each. Specifications regarding input files can be found in [FILES.md](https://github.com/team19techmeet/isro-interiit/blob/main/FILES.md).
 
 - [Installation](#installation)
 - [Usage (Examples)](#usage)
@@ -12,7 +10,21 @@ This program searches for solar flares in lightcurve data. The input is the ligh
 
 # Installation
 
-The web version is hosted [here](URL). The standalone application can be installed by cloning the [git repository](https://github.com/debjit-bw/isro-interiit) and executing the [install.sh](https://github.com/debjit-bw/isro-interiit/blob/main/install.sh).
+## Install the web version
+
+The web version can be run by executing
+
+`pip install -r requirements.txt`
+
+in the project directory. Then you need you need to run
+
+`app.py`
+
+from the same directory. You can now visit and use the tool at [http://127.0.0.1:5000](http://127.0.0.1:5000) on your browser.
+
+## Install the standalone app
+
+The standalone application can be installed by cloning the [git repository](https://github.com/team19techmeet/isro-interiit) and executing the [install.sh](https://github.com/team19techmeet/isro-interiit/blob/main/install.sh).
 
 
 # Usage
@@ -21,7 +33,7 @@ Both the web and app versions have an easy to use and intuitive UI.
 
 ## Web version
 
-Here we show how to use the web version of the software. For this example, we will use the sample lightcurve file [fits_data.lc](https://github.com/debjit-bw/isro-interiit/blob/main/sample_files/fits_data.lc) which is in the FITS format. Sample files for all supported formats are present inside the [sample_files](https://github.com/debjit-bw/isro-interiit/tree/main/sample_files) folder.
+Here we show how to use the web version of the software. For this example, we will use the sample lightcurve file [fits_data.lc](https://github.com/team19techmeet/isro-interiit/blob/main/sample_files/fits_data.lc) which is in the FITS format. Sample files for all supported formats are present inside the [sample_files](https://github.com/team19techmeet/isro-interiit/tree/main/sample_files) folder.
 
 1. The homepage tells the user about the app and its function.
 
@@ -47,9 +59,9 @@ Here we show how to use the web version of the software. For this example, we wi
 
 ## Standalone app
 
-Here we show how to use the standalone app. For this example, we will use a sample LC file from the [ISRO Pradaan website's](https://pradan.issdc.gov.in/pradan/) LC file, found inside the calibrated folder. We also use a corrupted file to show how error messages are displayed. Sample files for all supported formats are present inside the [sample_files](https://github.com/debjit-bw/isro-interiit/tree/main/sample_files) folder.
+Here we show how to use the standalone app. For this example, we will use a sample LC file from the [ISRO Pradaan website's](https://pradan.issdc.gov.in/pradan/) LC file, found inside the calibrated folder. We also use a corrupted file to show how error messages are displayed. Sample files for all supported formats are present inside the [sample_files](https://github.com/team19techmeet/isro-interiit/tree/main/sample_files) folder.
 
-1. The main window has options to upload the required file types. Descriptions and specifications of the files can be found in [FILES.md](https://github.com/debjit-bw/isro-interiit/blob/main/FILES.md).
+1. The main window has options to upload the required file types. Descriptions and specifications of the files can be found in [FILES.md](https://github.com/team19techmeet/isro-interiit/blob/main/FILES.md).
 
 ![MainWindow](Images/MainWindow.png)
 
@@ -70,7 +82,7 @@ Here we show how to use the standalone app. For this example, we will use a samp
 
 # Documentation
 
-Detailed documentation can be found in [DOCUMENTATION.md](https://github.com/debjit-bw/isro-interiit/blob/main/DOCUMENTATION.md).
+Detailed documentation can be found in [DOCUMENTATION.md](https://github.com/team19techmeet/isro-interiit/blob/main/DOCUMENTATION.md).
 
 
 # Accuracy and reliability
@@ -83,4 +95,4 @@ After that the fit parameters we used were extensively fine-tuned based on sever
 
 In other words, even if the algorithm can sometimes find a false positive, it will very rarely find a false negative. This means almost no real flare will be missed.
 
-Our reasoning and explanation for choosing the fit parameters is detailed in [DOCUMENTATION.md](https://github.com/debjit-bw/isro-interiit/blob/main/DOCUMENTATION.md).
+Our reasoning and explanation for choosing the fit parameters is detailed in [DOCUMENTATION.md](https://github.com/team19techmeet/isro-interiit/blob/main/DOCUMENTATION.md).

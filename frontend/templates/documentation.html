@@ -33,15 +33,15 @@
 
 <h1 id="input">Input</h1>
 
-<p>Folder: <a href="https://github.com/debjit-bw/isro-interiit/tree/main/frontend">frontend/</a></p>
+<p>Folder: <a href="https://github.com/team19techmeet/isro-interiit/tree/main/frontend">frontend/</a></p>
 
-<p>The frontend accepts an appropriate file and its type. The user can choose between FITS, ASCII and XLS file formats. There are specifications that the file has to follow for the backend to process. This is described in detail in <a href="https://github.com/debjit-bw/isro-interiit/blob/main/FILES.md">FILES.md</a></p>
+<p>The frontend accepts an appropriate file and its type. The user can choose between FITS, ASCII and XLS file formats. There are specifications that the file has to follow for the backend to process. This is described in detail in <a href="https://github.com/team19techmeet/isro-interiit/blob/main/FILES.md">FILES.md</a></p>
 
 <p>For web, the frontend stores the file in the server. For the app, the file is already in the local filesystem. Next, it passes the filename to the backend.</p>
 
 <h1 id="filehandling">File handling</h1>
 
-<p>Folder: <a href="https://github.com/debjit-bw/isro-interiit/tree/main/backend/file_handler">file_handler/</a></p>
+<p>Folder: <a href="https://github.com/team19techmeet/isro-interiit/tree/main/backend/file_handler">file_handler/</a></p>
 
 <p>The backend is designed to attempt to open the file depending on the file type. If it cannot open the file (either due to errors in file, incompatible types, or corrupted files), it sends an error message to the frontend.</p>
 
@@ -61,13 +61,13 @@
 
 <h2 id="curvecompletion">Curve completion</h2>
 
-<p>File: <a href="https://github.com/debjit-bw/isro-interiit/blob/main/backend/core/curve_completion.py">curve_completion.py</a></p>
+<p>File: <a href="https://github.com/team19techmeet/isro-interiit/blob/main/backend/core/curve_completion.py">curve_completion.py</a></p>
 
 <p>The data in the matrix maybe incomplete due to bad sun angles. Several of this voids are present during the flares. To accurately detect those, the algorithm attempts to fill the incomplete data by interpolating between the nearest data it can find around the void.</p>
 
 <h2 id="errorsmoothening">Error smoothening</h2>
 
-<p>File: <a href="https://github.com/debjit-bw/isro-interiit/blob/main/backend/core/smoothen_curve.py">smoothen_curve.py</a></p>
+<p>File: <a href="https://github.com/team19techmeet/isro-interiit/blob/main/backend/core/smoothen_curve.py">smoothen_curve.py</a></p>
 
 <p>The data is very noisy. To reduce the error, instead of working with the error values provided, we smoothen the curve by taking the moving average of the curve.</p>
 
@@ -75,7 +75,7 @@
 
 <h2 id="peakdetection">Peak detection</h2>
 
-<p>File: <a href="https://github.com/debjit-bw/isro-interiit/blob/main/backend/core/peak_information.py">peak_information.py</a></p>
+<p>File: <a href="https://github.com/team19techmeet/isro-interiit/blob/main/backend/core/peak_information.py">peak_information.py</a></p>
 
 <p>The backend uses <a href="https://scipy.org/">scipy's</a> <code>detect_peaks</code> and <code>peak_widths</code> functions to extract the peaks. We use several parameters to fine-tune our predictions.</p>
 
@@ -87,6 +87,6 @@
 
 <h1 id="output">Output</h1>
 
-<p>If successful, the backend returns a dictionary with the <code>graph_data</code> and relevant information about the <code>peaks</code>. The frontend then <a href="https://github.com/debjit-bw/isro-interiit/blob/main/frontend/templates/results.html">plots the graph</a> using <a href="https://www.chartjs.org/">chart.js</a> and displays the relevant parameters.</p>
+<p>If successful, the backend returns a dictionary with the <code>graph_data</code> and relevant information about the <code>peaks</code>. The frontend then <a href="https://github.com/team19techmeet/isro-interiit/blob/main/frontend/templates/results.html">plots the graph</a> using <a href="https://www.chartjs.org/">chart.js</a> and displays the relevant parameters.</p>
 </body>
 </html>
