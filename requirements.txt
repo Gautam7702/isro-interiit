@@ -4,3 +4,4 @@ scipy
 scikit-learn
 pandas
 xlrd
+Flask==2.0.3
