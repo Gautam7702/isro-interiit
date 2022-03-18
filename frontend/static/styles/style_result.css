@@ -1,7 +1,11 @@
 #mychart{
     width: 900px !important;
     height: 500px !important;
-    margin-left: 200px;
+    margin: auto;
+    margin-top: 50px;
+}
+body{
+    margin:auto;
 }
 .chart{
     width: 500px !important;
@@ -11,15 +15,16 @@
     font-family: 'Courier New', Courier, monospace;
     font-weight: 800;
     padding: 100px;
-    background-color: azure;
+    background-color: lightgrey;
+    color:black;
     height: 400px;
     width: 600px;
+    margin: auto;
     margin-top: 30px;
     margin-bottom: 20px;
-    margin-left: 200px;
 
 }
-.risetime,.decaytime,.peakflux,.duration{
+.risetime,.decaytime,.peakflux,.duration,.peak_position{
     position: relative;
     left: 20px;
     margin-top: 10px;
@@ -32,6 +37,14 @@
 }
 h1{
     position:relative;
-    left: 250px;
+    font-family: 'Righteous', cursive;
+    letter-spacing: 4px;
+    width: 20vw;
+
+    left: 40vw;
     display:inline;
+}
+body{
+    background-color: black;
+    color:white;
 }

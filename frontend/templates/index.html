@@ -2,24 +2,32 @@
 <html lang="en">
 <head>
     <title>ISRO</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <link rel ="stylesheet" href= "{{ url_for('static', filename='styles/style.css') }}"> 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Kanit:wght@800&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Kanit:wght@800&family=Righteous&family=Roboto:wght@300&display=swap" rel="stylesheet">
   
 </head>
 <body>  
     <div class = "home">
+
         <img class = "home_img" src = "{{ url_for('static', filename='images/background_home.png') }}">
         <h1>
-        IDENTIFICATION OF SOLAR BURSTS<br>IN X-RAY LIGHT CURVES
+       IDENTIFICATION OF SOLAR BURSTS<br>IN X-RAY LIGHT CURVES
         </h1>
-        <hr class ="hr1">
+        <li>
         <div class ="desc">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            Authored by <b>Debjit Bhowal, Gautam Sethia, Jugal Chapatwala and Jignesh Agrawal</b> from IIT Ropar.<br><br>
+
+            This program searches for solar flares in lightcurve data. The input is the lightcurve file in FITS, ASCII or XLS formats. The output is a visual representation of the identified solar flares along with some representative information for each. 
         </div>
+        <br>
+        <form action = "/documentation">
+            <button type="submit" class="documentation">Click here to view the documentation</button>
+        </form>
         <a href="#fileInput">
-        <img class= "arr" src = "{{ url_for('static', filename='images/arrow_down.png') }}" onclick="makeVisible()">
+        <img class= "arr" src = "{{ url_for('static', filename='images/arrow_down.png') }}">
         </a>
     </div>
     <div class="fileInput" id ="fileInput">
@@ -27,7 +35,7 @@
         <div class ="heading2">Drag and Drop</div>
         <!-- <br> -->
         <form action ="/submit" method = "post" enctype="multipart/form-data" class ="form">
-        <p class = "para">Files with extensions csv,fits are supported</p>
+        <p class = "para">Files with format ascii,fits and xls are supported</p>
         </div>
         <div class = "drop-zone" id = "drop-zone">
             <span class ="defaultText">Drop a file here or click to upload</span>
@@ -39,10 +47,9 @@
             <div class = "selectedOp">Select File Format<img class= "arr2" src = "{{ url_for('static', filename='images/arrow_down.png') }}"></div>
             <div class = "Op1">FITS </div>
             <div class = "Op2">ASCII</div>
-            <div class = "Op3">CDF</div>
             <div class = "Op4">XLS</div>
         </div>
-        <div class = "desc_format">hey there !</div>
+       <div class = "desc_format"></div>
         </form>
     </div> 
 </body>
