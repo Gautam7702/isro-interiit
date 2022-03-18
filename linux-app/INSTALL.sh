@@ -19,5 +19,4 @@ pip install scikit-learn
 pip install pandas
 pip install xlrd
 
-chmod +x ./isro-interiit.
-./isro-interiit.py
+python isro-interiit.py
