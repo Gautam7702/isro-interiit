@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from pyqtgraph import PlotWidget, plot, LinearRegionItem
 import json
 import sys, os
+import webbrowser
 
 path_to_file = f'{os.getcwd()}/{sys.argv[0]}'
 path = path_to_file.split('/')
@@ -57,7 +58,7 @@ class GraphSheet(object):
         self.ErrorMsg.setSizePolicy(sizePolicy)
         self.ErrorMsg.setStyleSheet("background: transparent")
         self.Xbutton = MyButton(lambda: self.ErrorBar.setVisible(False))
-        self.Xbutton.setIcon(QtGui.QIcon("close.png"))
+        self.Xbutton.setIcon(QtGui.QIcon(finalPath + "/linux-app/close.png"))
         self.Xbutton.setStyleSheet("background: transparent")
         self.ErrorBar.layout().addWidget(self.ErrorMsg)
         self.ErrorBar.layout().addWidget(self.Xbutton, 0, QtCore.Qt.AlignRight)
@@ -115,10 +116,10 @@ class GraphSheet(object):
             lambda: self.MenuButtonAction(), parent=self.GraphHeader)
         self.MenuButton.setAutoRaise(True)
         self.MenuButton.setObjectName("MenuButton")
-        self.MenuButton.setIcon(QtGui.QIcon("menu.png"))
+        self.MenuButton.setIcon(QtGui.QIcon(finalPath + "/linux-app/menu.png"))
         self.FileButton = MyButton(
             lambda: self.FileButtonAction(), parent=self.GraphHeader)
-        self.FileButton.setIcon(QtGui.QIcon("open-file-icon.png"))
+        self.FileButton.setIcon(QtGui.QIcon(finalPath + "/linux-app/open-file-icon.png"))
         self.Title = QtWidgets.QLabel(
             "Identification Of Solar Bursts in X-Ray Light Curves")
         self.Title.setAlignment(QtCore.Qt.AlignHCenter)
@@ -174,6 +175,9 @@ class GraphSheet(object):
         self.asciiButton.setText("ASCII")
         self.xlshelp = QtWidgets.QLabel("SImilar to ASCII, the XLS file must have time in the first column and rate in the second column. The file can optionally contain error and frace in the third and fourth columns.\n")
         self.xlshelp.setWordWrap(True)
+
+        self.Documentation = MyButton(lambda: webbrowser.open(finalPath+"linux-app/documentation.html"))
+        self.Documentation.setText("Documentation")
         self.FileFormatList.layout().addWidget(self.fitsButton, 0, QtCore.Qt.AlignTop)
         self.FileFormatList.layout().addWidget(self.fitsHelp, 0, QtCore.Qt.AlignTop)
         self.FileFormatList.layout().addWidget(self.asciiButton, 0, QtCore.Qt.AlignTop)
@@ -183,6 +187,7 @@ class GraphSheet(object):
         self.FileFormatList.setVisible(False)
         self.FileMenu.layout().addWidget(self.AddFile, 0, QtCore.Qt.AlignTop)
         self.FileMenu.layout().addWidget(self.FileFormatList, 0, QtCore.Qt.AlignTop)
+        self.FileMenu.layout().addWidget(self.Documentation, 0, QtCore.Qt.AlignBottom)
         self.FileMenu.setVisible(False)
         self.Body.layout().addWidget(self.FileMenu, 0, QtCore.Qt.AlignRight | QtCore.Qt.AlignTop)
 
@@ -353,7 +358,6 @@ class PLotMenu(QtWidgets.QFrame):
 
     def DownArrowAction(self):
         self.SubPlotFrame.setVisible(not self.SubPlotFrame.isVisible())
-
 
 class MyButton(QtWidgets.QToolButton):
     def __init__(self, clickEvent, parent=None):
