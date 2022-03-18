@@ -1,8 +1,5 @@
 #! /bin/bash
 
-USR_DIR=$(pwd)
-MY_PATH="$USR_DIR/$0"
-
 
 if ! which python &> /dev/null
 then
@@ -22,5 +19,5 @@ pip install scikit-learn
 pip install pandas
 pip install xlrd
 
-chmod +x $MY_PATH/isro-interiit.py
-$MY_PATH/isro-interiit.py
+chmod +x ./isro-interiit.
+./isro-interiit.py
