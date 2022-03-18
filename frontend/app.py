@@ -2,8 +2,14 @@ from xml.dom.minidom import Document
 from flask import Flask, render_template,request,redirect,jsonify,flash
 import os
 import sys
-cwd = os.getcwd()
-sys.path.insert(1, cwd)  
+path_to_file = f'{os.getcwd()}/{sys.argv[0]}'
+path = path_to_file.split('/')
+path.pop()
+path.pop()
+finalPath = ""
+for name in path:
+    finalPath = finalPath + name + '/'
+sys.path.insert(1, finalPath)
 from backend.main import get_analysis_data
 app = Flask(__name__)
 UPLOADFOLDER = 'frontend\\uploads'
