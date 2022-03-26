@@ -6,7 +6,7 @@ def get_peaks(array: list) -> list:
     """
     Get peaks from data.
     """
-    x = (np.max(array) - np.average(array)) / 2 + np.average(array)
+    x = (np.max(array) - np.average(array)) / 4 + np.average(array)
     peaks, p_data = find_peaks(array, x, width = 60)
     return peaks
 
