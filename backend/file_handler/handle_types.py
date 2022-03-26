@@ -30,18 +30,27 @@ def read_csv(file_path):
     Reads a csv file and returns the data as a numpy array.
     """
     try:
-        data = pd.read_csv(file_path).to_numpy()
+        # data = pd.read_csv(file_path).to_numpy()
+        data = []
+        for line in open(file_path):
+            row = [int(x) for x in line.strip().split(' ') if len(x) > 0]
+            if len(row) == 2:
+                data.append(row)
+
+        data = np.asarray(data)
+        
         if len(data) > 0 and len(data[0]) > 0:
             return {
                 "good": True,
-                "data": data[:,:2]
+                "data": data
             }
         else:
             return {
                 "good": False,
                 "message": "No data found in file or data has one axis."
             }
-    except:
+    except Exception as e:
+        print(e)
         return {
             "good": False,
             "message": "Could not read file."
