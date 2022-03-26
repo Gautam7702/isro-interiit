@@ -25,20 +25,22 @@ def read_fits(file_path):
             "message": "Not a fits file or data not in second element."
         }
 
-def read_csv(file_path):
+def read_csv(file_path, retry_as_csv = False):
     """
     Reads a csv file and returns the data as a numpy array.
     """
     try:
-        # data = pd.read_csv(file_path).to_numpy()
-        data = []
-        for line in open(file_path):
-            row = [int(x) for x in line.strip().split(' ') if len(x) > 0]
-            if len(row) == 2:
-                data.append(row)
+        if retry_as_csv:
+            data = pd.read_csv(file_path).to_numpy()
+        else:
+            data = []
+            for line in open(file_path):
+                row = [int(x) for x in line.strip().split(' ') if len(x) > 0]
+                if len(row) == 2:
+                    data.append(row)
 
-        data = np.asarray(data)
-        
+            data = np.asarray(data)
+
         if len(data) > 0 and len(data[0]) > 0:
             return {
                 "good": True,
@@ -49,12 +51,14 @@ def read_csv(file_path):
                 "good": False,
                 "message": "No data found in file or data has one axis."
             }
-    except Exception as e:
-        print(e)
-        return {
-            "good": False,
-            "message": "Could not read file."
-        }
+    except:
+        if retry_as_csv:
+            return {
+                "good": False,
+                "message": "Could not read file."
+            }
+        else:
+            return read_csv(file_path, True)
 
 def read_xls(file_path):
     """
